@@ -45,7 +45,7 @@ public class SolutionBPrime {
 	}
 
 	public static void main(String[] args) {
-		N = Integer.parseInt(args[0]);
+		N = Integer.parseInt(args[0]); //Get N from command line arguments.
 		SolutionBPrime sb = new SolutionBPrime();
 		Letter[] l = new Letter[N];
 		sb.generate(l, N, 0);
