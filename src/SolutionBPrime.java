@@ -8,14 +8,16 @@ public class SolutionBPrime {
 	private int numberOfSolutions = 0;
 
 	public void generate(Letter[] pass, int size, int nbOfC) {
-		if (size != 0) {
+		
+		/* Hint 1: If it's the last letter, it's either E or D */
+		if (size == 1) {
+				pass[N - size] = Letter.D;
+				generate(pass, size - 1, nbOfC);
+				pass[N - size] = Letter.E;
+				generate(pass, size - 1, nbOfC);
+			}
+			else if (size != 0) {
 			for (Letter l : Letter.values()) {
-				/* Hint 1: If it's the last letter, it's either E or D */
-				if (size == 1) {
-					if (l == Letter.D || l == Letter.E) {
-						pass[N - size] = l;
-						generate(pass, size - 1, nbOfC);
-					}
 					/*
 					 * Hint 2 : If it is a C, it has to be I or F after it. As
 					 * the last letter is E or D, C can't be at the penultimate
@@ -23,7 +25,7 @@ public class SolutionBPrime {
 					 * 
 					 * Hint 3 :If there is already 3 C, we can't add more. 
 					 */
-				} else if (l == Letter.C) {
+				 if (l == Letter.C) {
 					if (size > 2) {
 						if (nbOfC < 3) {	
 							pass[N - size] = l;
