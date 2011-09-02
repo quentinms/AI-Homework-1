@@ -1,13 +1,13 @@
 public class SolutionBPrime {
 
-	private enum Letter {
+	private static enum Letter {
 		A, B, C, D, E, F, G, H, I
 	};
 
 	private static int N;
-	private int numberOfSolutions = 0;
+	private static int numberOfSolutions = 0;
 
-	public void generate(Letter[] pass, int size, int nbOfC) {
+	private static void generate(Letter[] pass, int size, int nbOfC) {
 		
 		/* Hint 1: If it's the last letter, it's either E or D */
 		if (size == 1) {
@@ -48,10 +48,8 @@ public class SolutionBPrime {
 
 	public static void main(String[] args) {
 		N = Integer.parseInt(args[0]); //Get N from command line arguments.
-		SolutionBPrime sb = new SolutionBPrime();
-		Letter[] l = new Letter[N];
-		sb.generate(l, N, 0);
-		System.out.println(sb.numberOfSolutions);
+		generate(new Letter[N], N, 0);
+		System.out.println(numberOfSolutions);
 	}
 
 }
