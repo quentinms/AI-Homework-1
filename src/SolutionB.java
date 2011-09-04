@@ -58,7 +58,12 @@ public class SolutionB {
 	}
 
 	public static void main(String[] args) {
+		try{
 		N = Integer.parseInt(args[0]); // Get N from command line arguments.
+		}catch (Exception e) {
+			System.err.println("Enter a valid argument!");
+			System.exit(-42);
+		}
 		generate(new Letter[N], N, 0);
 		System.out.println(numberOfSolutions);
 	}
