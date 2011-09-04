@@ -19,26 +19,38 @@ public class SolutionA {
 			pass[N - size] = Letter.E;
 			generate(pass, size - 1);
 		} else if (size != 0) {
-			for (Letter l : Letter.values()) {
 
-				/*
-				 * Hint 2 : If it is a C, it has to be I or F after it. As the
-				 * last letter is E or D, C can't be at the penultimate position
-				 */
-				if (l == Letter.C) {
-					if (size > 2) {
-						pass[N - size] = l;
-						pass[N - (size - 1)] = Letter.I;
-						generate(pass, size - 2);
-						pass[N - (size - 1)] = Letter.F;
-						generate(pass, size - 2);
-					}
-				} else {
-					pass[N - size] = l;
-					generate(pass, size - 1);
-				}
+			/*
+			 * Hint 2 : If it is a C, it has to be I or F after it. As the last
+			 * letter is E or D, C can't be at the penultimate position
+			 */
 
+			pass[N - size] = Letter.A;
+			generate(pass, size - 1);
+			pass[N - size] = Letter.B;
+			generate(pass, size - 1);
+
+			if (size > 2) {
+				pass[N - size] = Letter.C;
+				pass[N - (size - 1)] = Letter.I;
+				generate(pass, size - 2);
+				pass[N - (size - 1)] = Letter.F;
+				generate(pass, size - 2);
 			}
+
+			pass[N - size] = Letter.D;
+			generate(pass, size - 1);
+			pass[N - size] = Letter.E;
+			generate(pass, size - 1);
+			pass[N - size] = Letter.F;
+			generate(pass, size - 1);
+			pass[N - size] = Letter.G;
+			generate(pass, size - 1);
+			pass[N - size] = Letter.H;
+			generate(pass, size - 1);
+			pass[N - size] = Letter.I;
+			generate(pass, size - 1);
+
 		} else {
 			for (Letter l : pass) {
 				System.out.print(l);

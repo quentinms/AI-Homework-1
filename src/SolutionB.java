@@ -5,7 +5,7 @@ public class SolutionB {
 	};
 
 	private static int N;
-	private static int numberOfSolutions = 0;
+	private static long numberOfSolutions = 0;
 
 	private static void generate(Letter[] pass, int size, int nbOfC) {
 
@@ -16,29 +16,42 @@ public class SolutionB {
 			pass[N - size] = Letter.E;
 			generate(pass, size - 1, nbOfC);
 		} else if (size != 0) {
-			for (Letter l : Letter.values()) {
-				/*
-				 * Hint 2 : If it is a C, it has to be I or F after it. As the
-				 * last letter is E or D, C can't be at the penultimate position
-				 * 
-				 * Hint 3 :If there is already 3 C, we can't add more.
-				 */
-				if (l == Letter.C) {
-					if (size > 2) {
-						if (nbOfC < 3) {
-							pass[N - size] = l;
-							pass[N - (size - 1)] = Letter.I;
-							generate(pass, size - 2, nbOfC + 1);
-							pass[N - (size - 1)] = Letter.F;
-							generate(pass, size - 2, nbOfC + 1);
-						}
-					}
-				} else {
-					pass[N - size] = l;
-					generate(pass, size - 1, nbOfC);
-				}
 
+			/*
+			 * Hint 2 : If it is a C, it has to be I or F after it. As the last
+			 * letter is E or D, C can't be at the penultimate position
+			 * 
+			 * Hint 3 :If there is already 3 C, we can't add more.
+			 */
+
+			pass[N - size] = Letter.A;
+			generate(pass, size - 1, nbOfC);
+			pass[N - size] = Letter.B;
+			generate(pass, size - 1, nbOfC);
+
+			if (size > 2) {
+				if (nbOfC < 3) {
+					pass[N - size] = Letter.C;
+					pass[N - (size - 1)] = Letter.I;
+					generate(pass, size - 2, nbOfC + 1);
+					pass[N - (size - 1)] = Letter.F;
+					generate(pass, size - 2, nbOfC + 1);
+				}
 			}
+
+			pass[N - size] = Letter.D;
+			generate(pass, size - 1, nbOfC);
+			pass[N - size] = Letter.E;
+			generate(pass, size - 1, nbOfC);
+			pass[N - size] = Letter.F;
+			generate(pass, size - 1, nbOfC);
+			pass[N - size] = Letter.G;
+			generate(pass, size - 1, nbOfC);
+			pass[N - size] = Letter.H;
+			generate(pass, size - 1, nbOfC);
+			pass[N - size] = Letter.I;
+			generate(pass, size - 1, nbOfC);
+
 		} else {
 			numberOfSolutions++;
 		}
