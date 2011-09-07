@@ -4,7 +4,7 @@ public class SolutionA {
 		A, B, C, D, E, F, G, H, I
 	};
 
-	private static int N = 4;
+	private static final int N = 4;
 
 	private static void generate(Letter[] pass, int size) {
 
